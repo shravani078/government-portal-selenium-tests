@@ -1,0 +1,6 @@
+target/
+test-output/
+.idea/
+.vscode/
+*.class
+.DS_Store
