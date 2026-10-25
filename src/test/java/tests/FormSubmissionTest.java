@@ -18,18 +18,24 @@ public class FormSubmissionTest {
     private WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        options.addArguments("--window-size=1365,900");
+public void setUp() {
+    System.out.println("STEP 1: Starting Chrome setup");
 
-        driver = new ChromeDriver(options);
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--headless=new");
+    options.addArguments("--window-size=1365,900");
+    options.addArguments("--disable-gpu");
 
-        URL formUrl = getClass().getResource("/form.html");
-        Assert.assertNotNull(formUrl, "form.html was not found");
+    driver = new ChromeDriver(options);
+    System.out.println("STEP 2: Chrome started");
 
-        driver.get(formUrl.toExternalForm());
-    }
+    URL formUrl = getClass().getResource("/form.html");
+    Assert.assertNotNull(formUrl, "form.html was not found");
+    System.out.println("STEP 3: Form URL found: " + formUrl);
+
+    driver.get(formUrl.toExternalForm());
+    System.out.println("STEP 4: Form loaded successfully");
+}
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
